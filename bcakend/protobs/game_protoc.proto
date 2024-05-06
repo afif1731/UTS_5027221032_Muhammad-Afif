@@ -1,0 +1,259 @@
+syntax = "proto3";
+
+package game;
+
+message ResponseStatus {
+    bool status = 1;
+    int32 code = 2;
+    string res_msg = 3;
+}
+
+message ResponseMetadata {
+    string filter = 1;
+    string sort = 2;
+    int32 limit = 3;
+    int32 page =4;
+    int32 max_page = 5;
+}
+
+message RegisterRequest {
+    string name = 1;
+    string email = 2;
+    string password = 3;
+}
+
+message RegisterResponse {
+    repeated ResponseStatus status = 1;
+    message Data {
+        string token = 4;
+    }
+}
+
+message LoginRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message Loginresponse {
+    repeated ResponseStatus status = 1;
+    message Data {
+        string token = 4;
+    }
+}
+
+message MeRequest {
+    string token = 1;
+}
+
+message MeResponse {
+    repeated ResponseStatus status = 1;
+    message Data {
+        string account_id = 4;
+        string name = 5;
+    }
+}
+
+message UserDetailRequest {
+    string user_id = 1;
+}
+
+message UserDetailResponse {
+    repeated ResponseStatus status = 1;
+    message Data {
+        string user_id = 4;
+        string user_name = 5;
+        string user_email = 6;
+        int32 elo = 7;
+        string created_at = 8;
+    }
+}
+
+message RecentGameRequest {
+    string account_id = 1;
+    string filter = 2;
+    string sort = 3;
+    int32 limit = 4;
+    int32 page = 5;
+}
+
+message RecentGameResponse {
+    ResponseStatus status = 1;
+    ResponseMetadata metadata = 4;
+    message Data {
+        string game_id = 1;
+        string player_1 = 2;
+        string player_2 = 3;
+        string game_type = 4;
+        bool is_win = 5;
+        int32 point = 6;
+    }
+    repeated Data data = 9;
+}
+
+message LeaderboardRequest {
+    string filter = 1;
+    string sort = 2;
+    string limit = 3;
+    string page = 4;
+}
+
+message LeaderboardResponse {
+    ResponseStatus status = 1;
+    ResponseMetadata metadata = 4;
+    message Data {
+        string user_id = 1;
+        string user_name = 2;
+        string user_email = 3;
+        int32 elo = 4;
+        string created_at = 5;
+    }
+    repeated Data data = 9;
+}
+
+message UpdatePasswordRequest {
+    string email = 1;
+    string old_pass = 2;
+    string new_pass = 3;
+}
+
+message UpdatePasswordResponse {
+    ResponseStatus status = 1;
+}
+
+message DeleteUserRequest {
+    string user_id = 1;
+    string token = 2;
+}
+
+message DeleteUserResponse {
+    ResponseStatus status = 1;
+}
+
+message GameDetailRequest {
+    string game_id = 1;
+}
+
+message GameDetailResponse {
+    ResponseStatus status = 1;
+    message Data {
+        string game_id = 4;
+        int32 move_count = 5;
+        repeated string p1_move = 6;
+        repeated string p2_move = 7;
+        repeated string all_move = 8;
+    }
+}
+
+message CreateGameRequest {
+    string player_1 = 1;
+    string player_2 = 2;
+    string game_type = 3;
+}
+
+message CreateGameResponse {
+    ResponseStatus status = 1;
+    message Data {
+        string game_id = 4;
+        string game_type = 5;
+        string player1_id = 6;
+        string player1_name = 7;
+        string player2_id = 8;
+        string player2_name = 9;
+        string created_at = 10;
+    }
+}
+
+message UpdateMoveRequest {
+    string game_id = 1;
+    int32 player_type = 2;
+    string move = 3;
+    repeated string board = 4;
+}
+
+message UpdateMoveResponse {
+    ResponseStatus status = 1;
+    message Data {
+        repeated string p1_move = 4;
+        repeated string p2_move = 5;
+        repeated string all_move = 6;
+        repeated string board = 7;
+        int32 move_count = 8;
+    }
+}
+
+message EndGameRequest {
+    string game_id = 1;
+    string winner = 2;
+}
+
+message EndGameResponse {
+    ResponseStatus status = 1;
+    message Data {
+        string game_id = 4;
+        string winner = 5;
+        int32 point = 6;
+    }
+}
+
+message CreateRoomRequest {
+    string user_id = 1;
+}
+
+message CreateRoomResponse {
+    ResponseStatus status = 1;
+    message data {
+        string room_id = 4;
+        string creator = 5;
+        bool is_wait = 6;
+    }
+}
+
+message JoinRoomRequest {
+    string user_id = 1;
+    string room_id = 2;
+}
+
+message JoinroomResponse {
+    ResponseStatus status = 1;
+    message Data {
+        string game_id = 4;
+        string player_1 = 5;
+        string player_2 = 6;
+    }
+}
+
+service UserAuth {
+    rpc Register(RegisterRequest) returns (RegisterResponse) {}
+
+    rpc Login(LoginRequest) returns (Loginresponse) {}
+
+    rpc Me(MeRequest) returns (MeResponse) {}
+
+    rpc UpdatePassword(UpdatePasswordRequest) returns (UpdatePasswordResponse) {}
+
+    rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {}
+}
+
+service GameUser {
+    rpc GetUserDetail(UserDetailRequest) returns (UserDetailResponse) {}
+
+    rpc GetRecentGame(RecentGameRequest) returns (RecentGameResponse) {}
+
+    rpc GetLeaderBoard(LeaderboardRequest) returns (LeaderboardResponse) {}
+}
+
+service GameGame {
+    rpc GetgameDetail(GameDetailRequest) returns (GameDetailResponse) {}
+
+    rpc CreateGame(CreateGameRequest) returns (CreateGameResponse) {}
+
+    rpc UpdateMove(UpdateMoveRequest) returns (UpdateMoveResponse) {}
+
+    rpc EndGame(EndGameRequest) returns (EndGameResponse) {}
+}
+
+service GameRoom {
+    rpc CreateRoom(CreateRoomRequest) returns (CreateRoomResponse) {}
+
+    rpc JoinRoom(JoinRoomRequest) returns (JoinroomResponse) {}
+}

@@ -1,0 +1,84 @@
+datasource db {
+    provider = "postgresql"
+    url = env("DATABASE_URL")
+}
+
+enum AccountRole {
+    USER
+    ADMIN
+    BOT
+}
+
+enum gameType {
+    LPVP
+    OPVP
+    PVB
+}
+
+enum Winner {
+    P1
+    P2
+    NOP
+}
+
+model Accounts {
+    id          String      @id @default(uuid())
+    name        String
+    email       String      @unique
+    password    String
+    role        AccountRole @default(USER)
+    created_at  DateTime    @default(now())
+    updated_at  DateTime    @default(now()) @updatedAt
+
+    GameUser    GameUser[]
+}
+
+model GameUser {
+    id          String          @id @default(uuid())
+    game_elo    Int
+    created_at  DateTime        @default(now())
+    updated_at  DateTime        @default(now()) @updatedAt
+
+    account_id  String
+    account     Accounts        @relation(fields: [account_id], references: [id])
+    game_log1   GameLog[]       @relation("player_log1")
+    game_log2   GameLog[]       @relation("player_log2")
+    room_log    GameRoom[]
+}
+
+model GameLog {
+    id          String      @id @default(uuid())
+    game_type   gameType
+    winner      Winner      @default(NOP)
+    duration    Int         @default(0)
+    created_at  DateTime    @default(now())
+    updated_at  DateTime    @default(now()) @updatedAt
+
+    player_1    String
+    player_2    String
+    detail      String
+    game_user1  GameUser    @relation("player_log1", fields: [player_1], references: [id])
+    game_user2  GameUser    @relation("player_log2", fields: [player_2], references: [id])
+    game_detail GameDetail  @relation(fields: [detail], references: [id])
+    game_room   GameRoom[]
+}
+
+model GameDetail {
+    id          String      @id @default(uuid())
+    board       String[]
+    p1_move     String[]
+    p2_move     String[]
+    move_count  Int         @default(0)
+
+    game_log    GameLog[]
+}
+
+model GameRoom {
+    id          String      @id @default(uuid())
+    is_wait     Boolean     @default(true)
+
+    creator     String
+    log         String
+    game_user   GameUser    @relation(fields: [creator], references: [id])
+    game_log    GameLog     @relation(fields: [log], references: [id])
+}

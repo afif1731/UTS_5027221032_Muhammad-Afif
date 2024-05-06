@@ -1,0 +1,6 @@
+Lib/
+Scripts/
+docker/
+
+.env
+pyvenv.cfg

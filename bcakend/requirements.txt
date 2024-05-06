@@ -1,0 +1,5 @@
+grpcio-tools
+pandas
+prisma
+asyncio
+bcrypt
