@@ -3,7 +3,7 @@ from concurrent import futures
 import asyncio
 import time
 
-class GameUserServicer(game_protoc_pb2_grpc.GameUserServicer):
+class GameUserController(game_protoc_pb2_grpc.GameUserServicer):
     def GetUserDetail(self, request, context):
         return super().GetUserDetail(request, context)
     

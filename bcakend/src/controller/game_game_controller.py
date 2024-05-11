@@ -3,7 +3,7 @@ from concurrent import futures
 import asyncio
 import time
 
-class GameGameServicer(game_protoc_pb2_grpc.GameGameServicer):
+class GameGameController(game_protoc_pb2_grpc.GameGameServicer):
     def GetgameDetail(self, request, context):
         return super().GetgameDetail(request, context)
     
@@ -15,4 +15,3 @@ class GameGameServicer(game_protoc_pb2_grpc.GameGameServicer):
     
     def EndGame(self, request, context):
         return super().EndGame(request, context)
- 

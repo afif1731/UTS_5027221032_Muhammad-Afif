@@ -12,7 +12,7 @@ message ResponseMetadata {
     string filter = 1;
     string sort = 2;
     int32 limit = 3;
-    int32 page =4;
+    int32 page = 4;
     int32 max_page = 5;
 }
 
@@ -23,9 +23,10 @@ message RegisterRequest {
 }
 
 message RegisterResponse {
-    repeated ResponseStatus status = 1;
+    ResponseStatus status = 1;
+    Data data = 2;
     message Data {
-        string token = 4;
+        string token = 1;
     }
 }
 
@@ -35,9 +36,10 @@ message LoginRequest {
 }
 
 message Loginresponse {
-    repeated ResponseStatus status = 1;
+    ResponseStatus status = 1;
+    Data data = 2;
     message Data {
-        string token = 4;
+        string token = 1;
     }
 }
 
@@ -46,10 +48,12 @@ message MeRequest {
 }
 
 message MeResponse {
-    repeated ResponseStatus status = 1;
+    ResponseStatus status = 1;
+    Data data = 2;
     message Data {
-        string account_id = 4;
-        string name = 5;
+        string account_id = 1;
+        string user_id = 2;
+        string name = 3;
     }
 }
 
@@ -58,13 +62,14 @@ message UserDetailRequest {
 }
 
 message UserDetailResponse {
-    repeated ResponseStatus status = 1;
+    ResponseStatus status = 1;
+    Data data = 2;
     message Data {
-        string user_id = 4;
-        string user_name = 5;
-        string user_email = 6;
-        int32 elo = 7;
-        string created_at = 8;
+        string user_id = 1;
+        string user_name = 2;
+        string user_email = 3;
+        int32 elo = 4;
+        string created_at = 5;
     }
 }
 
@@ -78,7 +83,8 @@ message RecentGameRequest {
 
 message RecentGameResponse {
     ResponseStatus status = 1;
-    ResponseMetadata metadata = 4;
+    ResponseMetadata metadata = 2;
+    repeated Data data = 3;
     message Data {
         string game_id = 1;
         string player_1 = 2;
@@ -87,7 +93,6 @@ message RecentGameResponse {
         bool is_win = 5;
         int32 point = 6;
     }
-    repeated Data data = 9;
 }
 
 message LeaderboardRequest {
@@ -99,7 +104,8 @@ message LeaderboardRequest {
 
 message LeaderboardResponse {
     ResponseStatus status = 1;
-    ResponseMetadata metadata = 4;
+    ResponseMetadata metadata = 2;
+    repeated Data data = 3;
     message Data {
         string user_id = 1;
         string user_name = 2;
@@ -107,7 +113,6 @@ message LeaderboardResponse {
         int32 elo = 4;
         string created_at = 5;
     }
-    repeated Data data = 9;
 }
 
 message UpdatePasswordRequest {
@@ -118,6 +123,10 @@ message UpdatePasswordRequest {
 
 message UpdatePasswordResponse {
     ResponseStatus status = 1;
+    Data data = 2;
+    message Data {
+        string empty_data = 1;
+    }
 }
 
 message DeleteUserRequest {
@@ -127,6 +136,10 @@ message DeleteUserRequest {
 
 message DeleteUserResponse {
     ResponseStatus status = 1;
+    Data data = 2;
+    message Data {
+        string empty_data = 1;
+    }
 }
 
 message GameDetailRequest {
@@ -135,12 +148,13 @@ message GameDetailRequest {
 
 message GameDetailResponse {
     ResponseStatus status = 1;
+    Data data = 2;
     message Data {
-        string game_id = 4;
-        int32 move_count = 5;
-        repeated string p1_move = 6;
-        repeated string p2_move = 7;
-        repeated string all_move = 8;
+        string game_id = 1;
+        int32 move_count = 2;
+        repeated string p1_move = 3;
+        repeated string p2_move = 4;
+        repeated string all_move = 5;
     }
 }
 
@@ -152,14 +166,15 @@ message CreateGameRequest {
 
 message CreateGameResponse {
     ResponseStatus status = 1;
+    Data data = 2;
     message Data {
-        string game_id = 4;
-        string game_type = 5;
-        string player1_id = 6;
-        string player1_name = 7;
-        string player2_id = 8;
-        string player2_name = 9;
-        string created_at = 10;
+        string game_id = 1;
+        string game_type = 2;
+        string player1_id = 3;
+        string player1_name = 4;
+        string player2_id = 5;
+        string player2_name = 6;
+        string created_at = 7;
     }
 }
 
@@ -172,12 +187,13 @@ message UpdateMoveRequest {
 
 message UpdateMoveResponse {
     ResponseStatus status = 1;
+    Data data = 2;
     message Data {
-        repeated string p1_move = 4;
-        repeated string p2_move = 5;
-        repeated string all_move = 6;
-        repeated string board = 7;
-        int32 move_count = 8;
+        repeated string p1_move = 1;
+        repeated string p2_move = 2;
+        repeated string all_move = 3;
+        repeated string board = 4;
+        int32 move_count = 5;
     }
 }
 
@@ -188,10 +204,11 @@ message EndGameRequest {
 
 message EndGameResponse {
     ResponseStatus status = 1;
+    Data data = 2;
     message Data {
-        string game_id = 4;
-        string winner = 5;
-        int32 point = 6;
+        string game_id = 1;
+        string winner = 2;
+        int32 point = 3;
     }
 }
 
@@ -201,10 +218,11 @@ message CreateRoomRequest {
 
 message CreateRoomResponse {
     ResponseStatus status = 1;
-    message data {
-        string room_id = 4;
-        string creator = 5;
-        bool is_wait = 6;
+    Data data = 2;
+    message Data {
+        string room_id = 1;
+        string creator = 2;
+        bool is_wait = 3;
     }
 }
 
@@ -215,10 +233,11 @@ message JoinRoomRequest {
 
 message JoinroomResponse {
     ResponseStatus status = 1;
+    Data data = 2;
     message Data {
-        string game_id = 4;
-        string player_1 = 5;
-        string player_2 = 6;
+        string game_id = 1;
+        string player_1 = 2;
+        string player_2 = 3;
     }
 }
 
