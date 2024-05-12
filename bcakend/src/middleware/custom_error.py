@@ -1,9 +1,9 @@
 from google.protobuf.json_format import ParseDict
 
-class CustomError:
+class CustomError(Exception):
     def __init__(self, err_code, err_message):
         self.code = err_code
-        self.message = str(err_message.args[0])
+        self.message = str(err_message)
 
     def Parse(self, response):
         result = {

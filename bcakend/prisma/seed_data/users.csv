@@ -1,0 +1,4 @@
+account_id,name,email,password,role,user_id,game_elo
+a1c96728-4455-4024-87b5-0cf5e8603f82,LTS Bot,user.bot@mail.com,TATAPAN!!3724,BOT,2483cf4e-155c-4f41-9eba-51889e37368a,500
+f2f17097-f6f0-48f9-bd11-39ea11c56a27,random user1,user1.random@mail.com,TATAPAN!!3724,USER,b0c0b201-5e81-42d3-9d6e-faab014f142c,100
+5aa823b6-1770-4eaa-bc50-2d970093aacc,LTS Admin,user.admin@mail.com,TATAPAN!!3724,ADMIN,c68d0f72-07f7-47a4-8971-c07c31fe533b,1000
