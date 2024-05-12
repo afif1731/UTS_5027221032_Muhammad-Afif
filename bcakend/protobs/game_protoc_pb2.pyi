@@ -250,18 +250,30 @@ class GameDetailRequest(_message.Message):
 class GameDetailResponse(_message.Message):
     __slots__ = ("status", "data")
     class Data(_message.Message):
-        __slots__ = ("game_id", "move_count", "p1_move", "p2_move", "all_move")
+        __slots__ = ("game_id", "move_count", "p1_id", "p2_id", "winner", "p1_move", "p2_move", "all_move", "board", "created_at", "duration")
         GAME_ID_FIELD_NUMBER: _ClassVar[int]
         MOVE_COUNT_FIELD_NUMBER: _ClassVar[int]
+        P1_ID_FIELD_NUMBER: _ClassVar[int]
+        P2_ID_FIELD_NUMBER: _ClassVar[int]
+        WINNER_FIELD_NUMBER: _ClassVar[int]
         P1_MOVE_FIELD_NUMBER: _ClassVar[int]
         P2_MOVE_FIELD_NUMBER: _ClassVar[int]
         ALL_MOVE_FIELD_NUMBER: _ClassVar[int]
+        BOARD_FIELD_NUMBER: _ClassVar[int]
+        CREATED_AT_FIELD_NUMBER: _ClassVar[int]
+        DURATION_FIELD_NUMBER: _ClassVar[int]
         game_id: str
         move_count: int
+        p1_id: str
+        p2_id: str
+        winner: str
         p1_move: _containers.RepeatedScalarFieldContainer[str]
         p2_move: _containers.RepeatedScalarFieldContainer[str]
         all_move: _containers.RepeatedScalarFieldContainer[str]
-        def __init__(self, game_id: _Optional[str] = ..., move_count: _Optional[int] = ..., p1_move: _Optional[_Iterable[str]] = ..., p2_move: _Optional[_Iterable[str]] = ..., all_move: _Optional[_Iterable[str]] = ...) -> None: ...
+        board: _containers.RepeatedScalarFieldContainer[str]
+        created_at: str
+        duration: str
+        def __init__(self, game_id: _Optional[str] = ..., move_count: _Optional[int] = ..., p1_id: _Optional[str] = ..., p2_id: _Optional[str] = ..., winner: _Optional[str] = ..., p1_move: _Optional[_Iterable[str]] = ..., p2_move: _Optional[_Iterable[str]] = ..., all_move: _Optional[_Iterable[str]] = ..., board: _Optional[_Iterable[str]] = ..., created_at: _Optional[str] = ..., duration: _Optional[str] = ...) -> None: ...
     STATUS_FIELD_NUMBER: _ClassVar[int]
     DATA_FIELD_NUMBER: _ClassVar[int]
     status: ResponseStatus
@@ -347,19 +359,50 @@ class EndGameRequest(_message.Message):
 class EndGameResponse(_message.Message):
     __slots__ = ("status", "data")
     class Data(_message.Message):
-        __slots__ = ("game_id", "winner", "point")
+        __slots__ = ("game_id", "winner", "duration", "point")
         GAME_ID_FIELD_NUMBER: _ClassVar[int]
         WINNER_FIELD_NUMBER: _ClassVar[int]
+        DURATION_FIELD_NUMBER: _ClassVar[int]
         POINT_FIELD_NUMBER: _ClassVar[int]
         game_id: str
         winner: str
+        duration: str
         point: int
-        def __init__(self, game_id: _Optional[str] = ..., winner: _Optional[str] = ..., point: _Optional[int] = ...) -> None: ...
+        def __init__(self, game_id: _Optional[str] = ..., winner: _Optional[str] = ..., duration: _Optional[str] = ..., point: _Optional[int] = ...) -> None: ...
     STATUS_FIELD_NUMBER: _ClassVar[int]
     DATA_FIELD_NUMBER: _ClassVar[int]
     status: ResponseStatus
     data: EndGameResponse.Data
     def __init__(self, status: _Optional[_Union[ResponseStatus, _Mapping]] = ..., data: _Optional[_Union[EndGameResponse.Data, _Mapping]] = ...) -> None: ...
+
+class BotMoveRequest(_message.Message):
+    __slots__ = ("game_id", "board")
+    GAME_ID_FIELD_NUMBER: _ClassVar[int]
+    BOARD_FIELD_NUMBER: _ClassVar[int]
+    game_id: str
+    board: _containers.RepeatedScalarFieldContainer[str]
+    def __init__(self, game_id: _Optional[str] = ..., board: _Optional[_Iterable[str]] = ...) -> None: ...
+
+class BotMoveResponse(_message.Message):
+    __slots__ = ("status", "data")
+    class Data(_message.Message):
+        __slots__ = ("p1_move", "p2_move", "all_move", "board", "move_count")
+        P1_MOVE_FIELD_NUMBER: _ClassVar[int]
+        P2_MOVE_FIELD_NUMBER: _ClassVar[int]
+        ALL_MOVE_FIELD_NUMBER: _ClassVar[int]
+        BOARD_FIELD_NUMBER: _ClassVar[int]
+        MOVE_COUNT_FIELD_NUMBER: _ClassVar[int]
+        p1_move: _containers.RepeatedScalarFieldContainer[str]
+        p2_move: _containers.RepeatedScalarFieldContainer[str]
+        all_move: _containers.RepeatedScalarFieldContainer[str]
+        board: _containers.RepeatedScalarFieldContainer[str]
+        move_count: int
+        def __init__(self, p1_move: _Optional[_Iterable[str]] = ..., p2_move: _Optional[_Iterable[str]] = ..., all_move: _Optional[_Iterable[str]] = ..., board: _Optional[_Iterable[str]] = ..., move_count: _Optional[int] = ...) -> None: ...
+    STATUS_FIELD_NUMBER: _ClassVar[int]
+    DATA_FIELD_NUMBER: _ClassVar[int]
+    status: ResponseStatus
+    data: BotMoveResponse.Data
+    def __init__(self, status: _Optional[_Union[ResponseStatus, _Mapping]] = ..., data: _Optional[_Union[BotMoveResponse.Data, _Mapping]] = ...) -> None: ...
 
 class CreateRoomRequest(_message.Message):
     __slots__ = ("user_id",)

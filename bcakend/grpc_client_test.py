@@ -1,5 +1,6 @@
 from protobs import game_protoc_pb2, game_protoc_pb2_grpc
 from dotenv import load_dotenv
+from typing import Iterable
 
 import asyncio
 import time
@@ -10,10 +11,15 @@ load_dotenv()
 
 SERVER_URI = os.getenv('SERVER_URI')
 
+def iterating(input_string: str) -> Iterable[str]:
+    token = input_string.split()
+    return token
+
 async def main_run():
     async with grpc.aio.insecure_channel(SERVER_URI) as channel:
         authStub = game_protoc_pb2_grpc.UserAuthStub(channel)
         gameUserStub = game_protoc_pb2_grpc.GameUserStub(channel)
+        gameGameStub = game_protoc_pb2_grpc.GameGameStub(channel)
         print('1. Register')
         print('2. Login')
         print('3. Get Me')
@@ -21,6 +27,12 @@ async def main_run():
         print('5. Delete user')
         print('6. Get user Detail')
         print('7. Get Leaderboard')
+        print('8. Get Game Detail')
+        print('9. Create new game')
+        print('10. Update Move')
+        print('11. Get Bot Move')
+        print('12. End Game')
+        print('13. ???')
         rpc_call = input('Your Choose : ')
 
         if rpc_call == '1':
@@ -68,6 +80,38 @@ async def main_run():
             response = await gameUserStub.GetLeaderBoard(request)
             print(response)
         elif rpc_call == '8':
+            reg_game = input('Input game id: ')
+            request = game_protoc_pb2.GameDetailRequest(game_id=reg_game)
+            response = await gameGameStub.GetgameDetail(request)
+            print(response)
+        elif rpc_call == '9':
+            reg_p1 = input('Input player 1: ')
+            reg_p2 = input('Input player 2: ')
+            reg_gtype = input('Input game type: ')
+            request = game_protoc_pb2.CreateGameRequest(player_1=reg_p1, player_2=reg_p2, game_type=reg_gtype)
+            response = await gameGameStub.CreateGame(request)
+            print(response)
+        elif rpc_call == '10':
+            reg_gameid = input('Input Game Id: ')
+            reg_ptype = input('Input P Type: ')
+            reg_move = input('Input Move: ')
+            reg_board = input('Input Board: ')
+            request = game_protoc_pb2.UpdateMoveRequest(game_id=reg_gameid, player_type=int(reg_ptype), move=reg_move, board=iterating(reg_board))
+            response = await gameGameStub.UpdateMove(request)
+            print(response)            
+        elif rpc_call == '11':
+            reg_gameid = input('Input Game Id: ')
+            reg_board = input('Input Board: ')
+            request = game_protoc_pb2.BotMoveRequest(game_id=reg_gameid, board=iterating(reg_board))
+            response = await gameGameStub.GetBotMove(request)
+            print(response)
+        elif rpc_call == '12':
+            reg_gameid = input('Input Game Id: ')
+            reg_win = input('Input Winner: ')
+            request = game_protoc_pb2.EndGameRequest(game_id=reg_gameid, winner=reg_win)
+            response = await gameGameStub.EndGame(request)
+            print(response)
+        elif rpc_call == '13':
             print('not implemented')
         else:
             print('Unknown choose')

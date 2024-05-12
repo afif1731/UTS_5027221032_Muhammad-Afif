@@ -152,9 +152,15 @@ message GameDetailResponse {
     message Data {
         string game_id = 1;
         int32 move_count = 2;
-        repeated string p1_move = 3;
-        repeated string p2_move = 4;
-        repeated string all_move = 5;
+        string p1_id = 3;
+        string p2_id = 4;
+        string winner = 5;
+        repeated string p1_move = 6;
+        repeated string p2_move = 7;
+        repeated string all_move = 8;
+        repeated string board = 9;
+        string created_at = 10;
+        string duration = 11;
     }
 }
 
@@ -208,7 +214,25 @@ message EndGameResponse {
     message Data {
         string game_id = 1;
         string winner = 2;
-        int32 point = 3;
+        string duration = 3;
+        int32 point = 4;
+    }
+}
+
+message BotMoveRequest {
+    string game_id = 1;
+    repeated string board = 2;
+}
+
+message BotMoveResponse {
+    ResponseStatus status = 1;
+    Data data = 2;
+    message Data {
+        repeated string p1_move = 1;
+        repeated string p2_move = 2;
+        repeated string all_move = 3;
+        repeated string board = 4;
+        int32 move_count = 5;
     }
 }
 
@@ -269,6 +293,8 @@ service GameGame {
     rpc UpdateMove(UpdateMoveRequest) returns (UpdateMoveResponse) {}
 
     rpc EndGame(EndGameRequest) returns (EndGameResponse) {}
+
+    rpc GetBotMove(BotMoveRequest) returns (BotMoveResponse) {}
 }
 
 service GameRoom {

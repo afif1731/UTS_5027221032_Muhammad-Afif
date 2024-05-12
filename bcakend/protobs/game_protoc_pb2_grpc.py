@@ -459,6 +459,11 @@ class GameGameStub(object):
                 request_serializer=protobs_dot_game__protoc__pb2.EndGameRequest.SerializeToString,
                 response_deserializer=protobs_dot_game__protoc__pb2.EndGameResponse.FromString,
                 _registered_method=True)
+        self.GetBotMove = channel.unary_unary(
+                '/game.GameGame/GetBotMove',
+                request_serializer=protobs_dot_game__protoc__pb2.BotMoveRequest.SerializeToString,
+                response_deserializer=protobs_dot_game__protoc__pb2.BotMoveResponse.FromString,
+                _registered_method=True)
 
 
 class GameGameServicer(object):
@@ -488,6 +493,12 @@ class GameGameServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetBotMove(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_GameGameServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -510,6 +521,11 @@ def add_GameGameServicer_to_server(servicer, server):
                     servicer.EndGame,
                     request_deserializer=protobs_dot_game__protoc__pb2.EndGameRequest.FromString,
                     response_serializer=protobs_dot_game__protoc__pb2.EndGameResponse.SerializeToString,
+            ),
+            'GetBotMove': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetBotMove,
+                    request_deserializer=protobs_dot_game__protoc__pb2.BotMoveRequest.FromString,
+                    response_serializer=protobs_dot_game__protoc__pb2.BotMoveResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -619,6 +635,33 @@ class GameGame(object):
             '/game.GameGame/EndGame',
             protobs_dot_game__protoc__pb2.EndGameRequest.SerializeToString,
             protobs_dot_game__protoc__pb2.EndGameResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetBotMove(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/game.GameGame/GetBotMove',
+            protobs_dot_game__protoc__pb2.BotMoveRequest.SerializeToString,
+            protobs_dot_game__protoc__pb2.BotMoveResponse.FromString,
             options,
             channel_credentials,
             insecure,
