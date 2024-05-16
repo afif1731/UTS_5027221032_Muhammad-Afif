@@ -5,11 +5,11 @@ pdef = '_'
 bot_difficulty = 8
 
 def default_point(game_type):
-    if game_type is 'PVB':
+    if game_type == 'PVB':
         return 5
-    elif game_type is 'OPVP':
+    elif game_type == 'OPVP':
         return 0
-    elif game_type is 'LPVP':
+    elif game_type == 'LPVP':
         return 5
     
     return 0

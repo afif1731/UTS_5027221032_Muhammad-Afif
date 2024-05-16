@@ -1,0 +1,1256 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "game_protoc.proto",
+    "version": "1.0"
+  },
+  "tags": [
+    {
+      "name": "UserAuth"
+    },
+    {
+      "name": "GameUser"
+    },
+    {
+      "name": "GameGame"
+    },
+    {
+      "name": "GameRoom"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/game.GameGame/CreateGame": {
+      "post": {
+        "operationId": "GameGame_CreateGame",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gameCreateGameResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gameCreateGameRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GameGame"
+        ]
+      }
+    },
+    "/game.GameGame/EndGame": {
+      "post": {
+        "operationId": "GameGame_EndGame",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gameEndGameResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gameEndGameRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GameGame"
+        ]
+      }
+    },
+    "/game.GameGame/GetBotMove": {
+      "post": {
+        "operationId": "GameGame_GetBotMove",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gameBotMoveResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gameBotMoveRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GameGame"
+        ]
+      }
+    },
+    "/game.GameGame/GetgameDetail": {
+      "post": {
+        "operationId": "GameGame_GetgameDetail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gameGameDetailResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gameGameDetailRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GameGame"
+        ]
+      }
+    },
+    "/game.GameGame/UpdateMove": {
+      "post": {
+        "operationId": "GameGame_UpdateMove",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gameUpdateMoveResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gameUpdateMoveRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GameGame"
+        ]
+      }
+    },
+    "/game.GameRoom/CreateRoom": {
+      "post": {
+        "operationId": "GameRoom_CreateRoom",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gameCreateRoomResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gameCreateRoomRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GameRoom"
+        ]
+      }
+    },
+    "/game.GameRoom/JoinRoom": {
+      "post": {
+        "operationId": "GameRoom_JoinRoom",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gameJoinroomResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gameJoinRoomRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GameRoom"
+        ]
+      }
+    },
+    "/game.GameUser/GetLeaderBoard": {
+      "post": {
+        "operationId": "GameUser_GetLeaderBoard",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gameLeaderboardResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gameLeaderboardRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GameUser"
+        ]
+      }
+    },
+    "/game.GameUser/GetRecentGame": {
+      "post": {
+        "operationId": "GameUser_GetRecentGame",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gameRecentGameResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gameRecentGameRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GameUser"
+        ]
+      }
+    },
+    "/game.GameUser/GetUserDetail": {
+      "post": {
+        "operationId": "GameUser_GetUserDetail",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gameUserDetailResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gameUserDetailRequest"
+            }
+          }
+        ],
+        "tags": [
+          "GameUser"
+        ]
+      }
+    },
+    "/game.UserAuth/DeleteUser": {
+      "post": {
+        "operationId": "UserAuth_DeleteUser",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gameDeleteUserResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gameDeleteUserRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserAuth"
+        ]
+      }
+    },
+    "/game.UserAuth/Login": {
+      "post": {
+        "operationId": "UserAuth_Login",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gameLoginresponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gameLoginRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserAuth"
+        ]
+      }
+    },
+    "/game.UserAuth/Me": {
+      "post": {
+        "operationId": "UserAuth_Me",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gameMeResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gameMeRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserAuth"
+        ]
+      }
+    },
+    "/game.UserAuth/Register": {
+      "post": {
+        "operationId": "UserAuth_Register",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gameRegisterResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gameRegisterRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserAuth"
+        ]
+      }
+    },
+    "/game.UserAuth/UpdatePassword": {
+      "post": {
+        "operationId": "UserAuth_UpdatePassword",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/gameUpdatePasswordResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/rpcStatus"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/gameUpdatePasswordRequest"
+            }
+          }
+        ],
+        "tags": [
+          "UserAuth"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "gameBotMoveRequest": {
+      "type": "object",
+      "properties": {
+        "gameId": {
+          "type": "string"
+        },
+        "board": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "gameBotMoveResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/gameResponseStatus"
+        },
+        "data": {
+          "$ref": "#/definitions/gameBotMoveResponseData"
+        }
+      }
+    },
+    "gameBotMoveResponseData": {
+      "type": "object",
+      "properties": {
+        "p1Move": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "p2Move": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "allMove": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "board": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "moveCount": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "gameCreateGameRequest": {
+      "type": "object",
+      "properties": {
+        "player1": {
+          "type": "string"
+        },
+        "player2": {
+          "type": "string"
+        },
+        "gameType": {
+          "type": "string"
+        }
+      }
+    },
+    "gameCreateGameResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/gameResponseStatus"
+        },
+        "data": {
+          "$ref": "#/definitions/gameCreateGameResponseData"
+        }
+      }
+    },
+    "gameCreateGameResponseData": {
+      "type": "object",
+      "properties": {
+        "gameId": {
+          "type": "string"
+        },
+        "gameType": {
+          "type": "string"
+        },
+        "player1Id": {
+          "type": "string"
+        },
+        "player1Name": {
+          "type": "string"
+        },
+        "player2Id": {
+          "type": "string"
+        },
+        "player2Name": {
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      }
+    },
+    "gameCreateRoomRequest": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "gameCreateRoomResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/gameResponseStatus"
+        },
+        "data": {
+          "$ref": "#/definitions/gameCreateRoomResponseData"
+        }
+      }
+    },
+    "gameCreateRoomResponseData": {
+      "type": "object",
+      "properties": {
+        "roomId": {
+          "type": "string"
+        },
+        "creator": {
+          "type": "string"
+        },
+        "isWait": {
+          "type": "boolean"
+        }
+      }
+    },
+    "gameDeleteUserRequest": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "token": {
+          "type": "string"
+        }
+      }
+    },
+    "gameDeleteUserResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/gameResponseStatus"
+        },
+        "data": {
+          "$ref": "#/definitions/gameDeleteUserResponseData"
+        }
+      }
+    },
+    "gameDeleteUserResponseData": {
+      "type": "object",
+      "properties": {
+        "emptyData": {
+          "type": "string"
+        }
+      }
+    },
+    "gameEndGameRequest": {
+      "type": "object",
+      "properties": {
+        "gameId": {
+          "type": "string"
+        },
+        "winner": {
+          "type": "string"
+        }
+      }
+    },
+    "gameEndGameResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/gameResponseStatus"
+        },
+        "data": {
+          "$ref": "#/definitions/gameEndGameResponseData"
+        }
+      }
+    },
+    "gameEndGameResponseData": {
+      "type": "object",
+      "properties": {
+        "gameId": {
+          "type": "string"
+        },
+        "winner": {
+          "type": "string"
+        },
+        "duration": {
+          "type": "string"
+        },
+        "point": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "gameGameDetailRequest": {
+      "type": "object",
+      "properties": {
+        "gameId": {
+          "type": "string"
+        }
+      }
+    },
+    "gameGameDetailResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/gameResponseStatus"
+        },
+        "data": {
+          "$ref": "#/definitions/gameGameDetailResponseData"
+        }
+      }
+    },
+    "gameGameDetailResponseData": {
+      "type": "object",
+      "properties": {
+        "gameId": {
+          "type": "string"
+        },
+        "moveCount": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "p1Id": {
+          "type": "string"
+        },
+        "p2Id": {
+          "type": "string"
+        },
+        "winner": {
+          "type": "string"
+        },
+        "p1Move": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "p2Move": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "allMove": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "board": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "duration": {
+          "type": "string"
+        }
+      }
+    },
+    "gameJoinRoomRequest": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "roomId": {
+          "type": "string"
+        }
+      }
+    },
+    "gameJoinroomResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/gameResponseStatus"
+        },
+        "data": {
+          "$ref": "#/definitions/gameJoinroomResponseData"
+        }
+      }
+    },
+    "gameJoinroomResponseData": {
+      "type": "object",
+      "properties": {
+        "gameId": {
+          "type": "string"
+        },
+        "player1": {
+          "type": "string"
+        },
+        "player2": {
+          "type": "string"
+        }
+      }
+    },
+    "gameLeaderboardRequest": {
+      "type": "object",
+      "properties": {
+        "filter": {
+          "type": "string"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "string"
+        },
+        "page": {
+          "type": "string"
+        }
+      }
+    },
+    "gameLeaderboardResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/gameResponseStatus"
+        },
+        "metadata": {
+          "$ref": "#/definitions/gameResponseMetadata"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/gameLeaderboardResponseData"
+          }
+        }
+      }
+    },
+    "gameLeaderboardResponseData": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "userEmail": {
+          "type": "string"
+        },
+        "elo": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      }
+    },
+    "gameLoginRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "gameLoginresponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/gameResponseStatus"
+        },
+        "data": {
+          "$ref": "#/definitions/gameLoginresponseData"
+        }
+      }
+    },
+    "gameLoginresponseData": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      }
+    },
+    "gameMeRequest": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      }
+    },
+    "gameMeResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/gameResponseStatus"
+        },
+        "data": {
+          "$ref": "#/definitions/gameMeResponseData"
+        }
+      }
+    },
+    "gameMeResponseData": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "string"
+        },
+        "userId": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "gameRecentGameRequest": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "string"
+        },
+        "filter": {
+          "type": "string"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "page": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "gameRecentGameResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/gameResponseStatus"
+        },
+        "metadata": {
+          "$ref": "#/definitions/gameResponseMetadata"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/gameRecentGameResponseData"
+          }
+        }
+      }
+    },
+    "gameRecentGameResponseData": {
+      "type": "object",
+      "properties": {
+        "gameId": {
+          "type": "string"
+        },
+        "player1": {
+          "type": "string"
+        },
+        "player2": {
+          "type": "string"
+        },
+        "gameType": {
+          "type": "string"
+        },
+        "isWin": {
+          "type": "boolean"
+        },
+        "point": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "gameRegisterRequest": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "password": {
+          "type": "string"
+        }
+      }
+    },
+    "gameRegisterResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/gameResponseStatus"
+        },
+        "data": {
+          "$ref": "#/definitions/gameRegisterResponseData"
+        }
+      }
+    },
+    "gameRegisterResponseData": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      }
+    },
+    "gameResponseMetadata": {
+      "type": "object",
+      "properties": {
+        "filter": {
+          "type": "string"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "limit": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "page": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "maxPage": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "gameResponseStatus": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "boolean"
+        },
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "resMsg": {
+          "type": "string"
+        }
+      }
+    },
+    "gameUpdateMoveRequest": {
+      "type": "object",
+      "properties": {
+        "gameId": {
+          "type": "string"
+        },
+        "playerType": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "move": {
+          "type": "string"
+        },
+        "board": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "gameUpdateMoveResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/gameResponseStatus"
+        },
+        "data": {
+          "$ref": "#/definitions/gameUpdateMoveResponseData"
+        }
+      }
+    },
+    "gameUpdateMoveResponseData": {
+      "type": "object",
+      "properties": {
+        "p1Move": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "p2Move": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "allMove": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "board": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "moveCount": {
+          "type": "integer",
+          "format": "int32"
+        }
+      }
+    },
+    "gameUpdatePasswordRequest": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string"
+        },
+        "oldPass": {
+          "type": "string"
+        },
+        "newPass": {
+          "type": "string"
+        }
+      }
+    },
+    "gameUpdatePasswordResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/gameResponseStatus"
+        },
+        "data": {
+          "$ref": "#/definitions/gameUpdatePasswordResponseData"
+        }
+      }
+    },
+    "gameUpdatePasswordResponseData": {
+      "type": "object",
+      "properties": {
+        "emptyData": {
+          "type": "string"
+        }
+      }
+    },
+    "gameUserDetailRequest": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        }
+      }
+    },
+    "gameUserDetailResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/definitions/gameResponseStatus"
+        },
+        "data": {
+          "$ref": "#/definitions/gameUserDetailResponseData"
+        }
+      }
+    },
+    "gameUserDetailResponseData": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string"
+        },
+        "userName": {
+          "type": "string"
+        },
+        "userEmail": {
+          "type": "string"
+        },
+        "elo": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "createdAt": {
+          "type": "string"
+        }
+      }
+    },
+    "protobufAny": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": {}
+    },
+    "rpcStatus": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "message": {
+          "type": "string"
+        },
+        "details": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/protobufAny"
+          }
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "gRPC-gateway example with python server",
+    "url": "https://github.com/afif1731/UTS_5027221032_Muhammad-Afif"
+  }
+}

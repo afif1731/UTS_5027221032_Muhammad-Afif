@@ -60,38 +60,37 @@ def find_move(board, piece_row, piece_col) :
 	return all_move
 
 def make_move(board, prow, pcol, move_code, piece, pdefault) :
-	match move_code :
-		case -1 :
-			board[prow][pcol] = pdefault
-			board[prow][pcol - 1] = piece
-		
-		case 1 :
-			board[prow][pcol] = pdefault
-			board[prow][pcol + 1] = piece
-		
-		case -2 :
-			board[prow][pcol] = pdefault
-			board[prow - 1][pcol] = piece
-		
-		case 2 :
-			board[prow][pcol] = pdefault
-			board[prow + 1][pcol] = piece
-		
-		case -3 :
-			board[prow][pcol] = pdefault
-			board[prow - 1][pcol - 1] = piece
-		
-		case 3 :
-			board[prow][pcol] = pdefault
-			board[prow + 1][pcol + 1] = piece
-		
-		case -4 :
-			board[prow][pcol] = pdefault
-			board[prow - 1][pcol + 1] = piece
+	if move_code == -1 :
+		board[prow][pcol] = pdefault
+		board[prow][pcol - 1] = piece
+	
+	elif move_code == 1 :
+		board[prow][pcol] = pdefault
+		board[prow][pcol + 1] = piece
+	
+	elif move_code == -2 :
+		board[prow][pcol] = pdefault
+		board[prow - 1][pcol] = piece
+	
+	elif move_code == 2 :
+		board[prow][pcol] = pdefault
+		board[prow + 1][pcol] = piece
+	
+	elif move_code == -3 :
+		board[prow][pcol] = pdefault
+		board[prow - 1][pcol - 1] = piece
+	
+	elif move_code == 3 :
+		board[prow][pcol] = pdefault
+		board[prow + 1][pcol + 1] = piece
+	
+	elif move_code == -4 :
+		board[prow][pcol] = pdefault
+		board[prow - 1][pcol + 1] = piece
 
-		case -4 :
-			board[prow][pcol] = pdefault
-			board[prow + 1][pcol - 1] = piece
+	elif move_code == -4 :
+		board[prow][pcol] = pdefault
+		board[prow + 1][pcol - 1] = piece
 	
 	return board
 

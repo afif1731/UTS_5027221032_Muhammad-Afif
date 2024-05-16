@@ -1,0 +1,394 @@
+syntax = "proto3";
+
+package game;
+
+option go_package = "github.com/afif1731/UTS_5027221032_Muhammad-Afif";
+
+import "third_party/google/api/annotations.proto";
+import "google/protobuf/empty.proto";
+import "third_party/protoc-gen-openapiv2/options/annotations.proto";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+    info: {version: "1.0"};
+    external_docs: {
+      url: "https://github.com/afif1731/UTS_5027221032_Muhammad-Afif";
+      description: "gRPC-gateway example with python server";
+    }
+    schemes: HTTP;
+  };
+
+message ResponseStatus {
+    bool status = 1;
+    int32 code = 2;
+    string res_msg = 3;
+}
+
+message ResponseMetadata {
+    string filter = 1;
+    string sort = 2;
+    int32 limit = 3;
+    int32 page = 4;
+    int32 max_page = 5;
+}
+
+message RegisterRequest {
+    string name = 1;
+    string email = 2;
+    string password = 3;
+}
+
+message RegisterResponse {
+    ResponseStatus status = 1;
+    Data data = 2;
+    message Data {
+        string token = 1;
+    }
+}
+
+message LoginRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message Loginresponse {
+    ResponseStatus status = 1;
+    Data data = 2;
+    message Data {
+        string token = 1;
+    }
+}
+
+message MeRequest {
+    string token = 1;
+}
+
+message MeResponse {
+    ResponseStatus status = 1;
+    Data data = 2;
+    message Data {
+        string account_id = 1;
+        string user_id = 2;
+        string name = 3;
+    }
+}
+
+message UserDetailRequest {
+    string user_id = 1;
+}
+
+message UserDetailResponse {
+    ResponseStatus status = 1;
+    Data data = 2;
+    message Data {
+        string user_id = 1;
+        string user_name = 2;
+        string user_email = 3;
+        int32 elo = 4;
+        string created_at = 5;
+    }
+}
+
+message RecentGameRequest {
+    string account_id = 1;
+    string filter = 2;
+    string sort = 3;
+    int32 limit = 4;
+    int32 page = 5;
+}
+
+message RecentGameResponse {
+    ResponseStatus status = 1;
+    ResponseMetadata metadata = 2;
+    repeated Data data = 3;
+    message Data {
+        string game_id = 1;
+        string player_1 = 2;
+        string player_2 = 3;
+        string game_type = 4;
+        bool is_win = 5;
+        int32 point = 6;
+    }
+}
+
+message LeaderboardRequest {
+    string filter = 1;
+    string sort = 2;
+    string limit = 3;
+    string page = 4;
+}
+
+message LeaderboardResponse {
+    ResponseStatus status = 1;
+    ResponseMetadata metadata = 2;
+    repeated Data data = 3;
+    message Data {
+        string user_id = 1;
+        string user_name = 2;
+        string user_email = 3;
+        int32 elo = 4;
+        string created_at = 5;
+    }
+}
+
+message UpdatePasswordRequest {
+    string email = 1;
+    string old_pass = 2;
+    string new_pass = 3;
+}
+
+message UpdatePasswordResponse {
+    ResponseStatus status = 1;
+    Data data = 2;
+    message Data {
+        string empty_data = 1;
+    }
+}
+
+message DeleteUserRequest {
+    string user_id = 1;
+    string token = 2;
+}
+
+message DeleteUserResponse {
+    ResponseStatus status = 1;
+    Data data = 2;
+    message Data {
+        string empty_data = 1;
+    }
+}
+
+message GameDetailRequest {
+    string game_id = 1;
+}
+
+message GameDetailResponse {
+    ResponseStatus status = 1;
+    Data data = 2;
+    message Data {
+        string game_id = 1;
+        int32 move_count = 2;
+        string p1_id = 3;
+        string p2_id = 4;
+        string winner = 5;
+        repeated string p1_move = 6;
+        repeated string p2_move = 7;
+        repeated string all_move = 8;
+        repeated string board = 9;
+        string created_at = 10;
+        string duration = 11;
+    }
+}
+
+message CreateGameRequest {
+    string player_1 = 1;
+    string player_2 = 2;
+    string game_type = 3;
+}
+
+message CreateGameResponse {
+    ResponseStatus status = 1;
+    Data data = 2;
+    message Data {
+        string game_id = 1;
+        string game_type = 2;
+        string player1_id = 3;
+        string player1_name = 4;
+        string player2_id = 5;
+        string player2_name = 6;
+        string created_at = 7;
+    }
+}
+
+message UpdateMoveRequest {
+    string game_id = 1;
+    int32 player_type = 2;
+    string move = 3;
+    repeated string board = 4;
+}
+
+message UpdateMoveResponse {
+    ResponseStatus status = 1;
+    Data data = 2;
+    message Data {
+        repeated string p1_move = 1;
+        repeated string p2_move = 2;
+        repeated string all_move = 3;
+        repeated string board = 4;
+        int32 move_count = 5;
+    }
+}
+
+message EndGameRequest {
+    string game_id = 1;
+    string winner = 2;
+}
+
+message EndGameResponse {
+    ResponseStatus status = 1;
+    Data data = 2;
+    message Data {
+        string game_id = 1;
+        string winner = 2;
+        string duration = 3;
+        int32 point = 4;
+    }
+}
+
+message BotMoveRequest {
+    string game_id = 1;
+    repeated string board = 2;
+}
+
+message BotMoveResponse {
+    ResponseStatus status = 1;
+    Data data = 2;
+    message Data {
+        repeated string p1_move = 1;
+        repeated string p2_move = 2;
+        repeated string all_move = 3;
+        repeated string board = 4;
+        int32 move_count = 5;
+    }
+}
+
+message CreateRoomRequest {
+    string user_id = 1;
+}
+
+message CreateRoomResponse {
+    ResponseStatus status = 1;
+    Data data = 2;
+    message Data {
+        string room_id = 1;
+        string creator = 2;
+        bool is_wait = 3;
+    }
+}
+
+message JoinRoomRequest {
+    string user_id = 1;
+    string room_id = 2;
+}
+
+message JoinroomResponse {
+    ResponseStatus status = 1;
+    Data data = 2;
+    message Data {
+        string game_id = 1;
+        string player_1 = 2;
+        string player_2 = 3;
+    }
+}
+
+service UserAuth {
+    rpc Register(RegisterRequest) returns (RegisterResponse) {
+        option(google.api.http) = {
+            post: "/game.UserAuth/Register"
+            body: "*"
+        };
+    }
+
+    rpc Login(LoginRequest) returns (Loginresponse) {
+        option(google.api.http) = {
+            post: "/game.UserAuth/Login"
+            body: "*"
+        };
+    }
+
+    rpc Me(MeRequest) returns (MeResponse) {
+        option(google.api.http) = {
+            post: "/game.UserAuth/Me"
+            body: "*"
+        };
+    }
+
+    rpc UpdatePassword(UpdatePasswordRequest) returns (UpdatePasswordResponse) {
+        option(google.api.http) = {
+            post: "/game.UserAuth/UpdatePassword"
+            body: "*"
+        };
+    }
+
+    rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {
+        option(google.api.http) = {
+            post: "/game.UserAuth/DeleteUser"
+            body: "*"
+        };
+    }
+}
+
+service GameUser {
+    rpc GetUserDetail(UserDetailRequest) returns (UserDetailResponse) {
+        option(google.api.http) = {
+            post: "/game.GameUser/GetUserDetail"
+            body: "*"
+        };
+    }
+
+    rpc GetRecentGame(RecentGameRequest) returns (RecentGameResponse) {
+        option(google.api.http) = {
+            post: "/game.GameUser/GetRecentGame"
+            body: "*"
+        };
+    }
+
+    rpc GetLeaderBoard(LeaderboardRequest) returns (LeaderboardResponse) {
+        option(google.api.http) = {
+            post: "/game.GameUser/GetLeaderBoard"
+            body: "*"
+        };
+    }
+}
+
+service GameGame {
+    rpc GetgameDetail(GameDetailRequest) returns (GameDetailResponse) {
+        option(google.api.http) = {
+            post: "/game.GameGame/GetgameDetail"
+            body: "*"
+        };
+    }
+
+    rpc CreateGame(CreateGameRequest) returns (CreateGameResponse) {
+        option(google.api.http) = {
+            post: "/game.GameGame/CreateGame"
+            body: "*"
+        };
+    }
+
+    rpc UpdateMove(UpdateMoveRequest) returns (UpdateMoveResponse) {
+        option(google.api.http) = {
+            post: "/game.GameGame/UpdateMove"
+            body: "*"
+        };
+    }
+
+    rpc EndGame(EndGameRequest) returns (EndGameResponse) {
+        option(google.api.http) = {
+            post: "/game.GameGame/EndGame"
+            body: "*"
+        };
+    }
+
+    rpc GetBotMove(BotMoveRequest) returns (BotMoveResponse) {
+        option(google.api.http) = {
+            post: "/game.GameGame/GetBotMove"
+            body: "*"
+        };
+    }
+}
+
+service GameRoom {
+    rpc CreateRoom(CreateRoomRequest) returns (CreateRoomResponse) {
+        option(google.api.http) = {
+            post: "/game.GameRoom/CreateRoom"
+            body: "*"
+        };
+    }
+
+    rpc JoinRoom(JoinRoomRequest) returns (JoinroomResponse) {
+        option(google.api.http) = {
+            post: "/game.GameRoom/JoinRoom"
+            body: "*"
+        };
+    }
+}

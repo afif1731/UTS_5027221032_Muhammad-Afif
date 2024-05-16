@@ -26,9 +26,8 @@
         </div>
     </div>
     <body>
-        <div class="p-3 d-inline">
-            Hallo Wurld
-            <button type="button" class="btn btn-primary">START</button>
+        <div class="p-3 text-center">
+            Hello World
         </div>
     </body>
     <div>

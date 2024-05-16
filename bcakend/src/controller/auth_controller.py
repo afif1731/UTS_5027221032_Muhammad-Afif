@@ -7,6 +7,7 @@ import src.services.auth_service as AuthService
 class UserAuthController(game_protoc_pb2_grpc.UserAuthServicer):
     async def Register(self, request, context):
         try:
+            print(request)
             token = await AuthService.register(name=request.name, email=request.email, password=request.password)
 
             if isinstance(token, CustomError):
@@ -23,6 +24,7 @@ class UserAuthController(game_protoc_pb2_grpc.UserAuthServicer):
     
     async def Login(self, request, context):
         try:
+            print(request)
             token = await AuthService.login(email=request.email, password=request.password)
 
             if isinstance(token, CustomError):

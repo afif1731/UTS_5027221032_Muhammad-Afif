@@ -1,3 +1,3 @@
 <template>
-    Registre Here
+    <AuthRegister/>
 </template>

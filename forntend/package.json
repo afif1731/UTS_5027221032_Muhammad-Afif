@@ -5,12 +5,17 @@
   "scripts": {
     "build": "nuxt build",
     "start:dev": "nuxt dev",
+    "start": "nuxt start",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "proto:build": "npx protoc -I=./protobs --proto_path=. --proto_path=./protobs/third_party --ts_out=./protobs protobs/*.proto"
   },
   "dependencies": {
+    "@protobuf-ts/grpcweb-transport": "^2.9.4",
+    "@protobuf-ts/plugin": "^2.9.4",
     "bootstrap": "^5.3.3",
+    "dotenv": "^16.4.5",
     "nuxt": "^3.11.2",
     "vue": "^3.4.21",
     "vue-router": "^4.3.0"

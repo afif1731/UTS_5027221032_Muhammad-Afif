@@ -16,6 +16,21 @@ services:
       - ${DATABASE_PORT}
     volumes:
       - ./docker/db_volume/:/var/lib/postgresql/data
+  envoy:
+    container_name: envoy-insys
+    image: envoyproxy/envoy:v1.22.0
+    restart: on-failure
+    env_file:
+      - .env
+    environment:
+      ENVOY_UID: ${ENVOY_ACCESS}
+      ENVOY_GID: ${ENVOY_ACCESS}
+    ports:
+      - "5000:5000"
+      - "4200:4200"
+    volumes:
+      - ./envoy/volume/envoy.yaml:/etc/envoy/envoy.yaml
 
 volumes:
   mysqldata:
+  envoy:

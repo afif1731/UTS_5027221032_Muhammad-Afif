@@ -24,5 +24,15 @@ export default defineNuxtConfig({
     }
   
   },
-  ssr: false
+  ssr: false,
+  vite: {
+		resolve: {
+			preserveSymlinks: true
+		}
+	},
+  runtimeConfig: {
+    public: {
+      SERVER_URI: process.env.SERVER_URI
+    }
+  }
 })

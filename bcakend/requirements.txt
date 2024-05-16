@@ -1,6 +1,9 @@
+grpcio
 grpcio-tools
 pandas
 prisma
 asyncio
 bcrypt
 pyjwt
+protobuf==3.20.*
+grpc-gateway-protoc-gen-openapiv2

@@ -5,27 +5,27 @@ rrow = ['1', '2', '3']
 ccol = ['A', 'B', 'C']
 
 def moveCodeDecode(row, col, code):
-    match int(code):
-        case -1:
-            col -= 1
-        case 1:
-            col += 1
-        case -2:
-            row -= 1
-        case 2:
-            row += 1
-        case -3:
-            row -= 1
-            col -= 1
-        case 3:
-            row += 1
-            col += 1
-        case -4:
-            row -= 1
-            col += 1
-        case 4:
-            row += 1
-            col += 1
+    int_code = int(code)
+    if int_code == -1:
+        col -= 1
+    elif int_code == 1:
+        col += 1
+    elif int_code == -2:
+        row -= 1
+    elif int_code == 2:
+        row += 1
+    elif int_code == -3:
+        row -= 1
+        col -= 1
+    elif int_code == 3:
+        row += 1
+        col += 1
+    elif int_code == -4:
+        row -= 1
+        col += 1
+    elif int_code == 4:
+        row += 1
+        col += 1
     
     return (row, col)
 
